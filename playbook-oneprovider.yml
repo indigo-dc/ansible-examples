@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: yes
+  strategy: free
+  roles:
+    # These configurations install and configure oneprovider
+    - { role: onedata.oneprovider } # default options are install and configure
+    #- { role: onedata.oneprovider , oneprovider_install: true, oneprovider_configure: true,}
+
+    # These configuration performs requirmets check and then installs and configures oneprovider
+    #- { role: onedata.oneprovider, requirements_check: true, oneprovider_install: true, oneprovider_configure: true} 
+
+    # These configuration just restart oneprovider services
+    # - { role: onedata.oneprovider, oneprovider_restart: true }
+
+    # This configuration uninstalls oneprovider package and deletes all the files oneprovider service created
+    # database and certificates included!
+    #- { role: onedata.onedata.oneprovider, oneprovider_uninstall: true }
+
+
+    

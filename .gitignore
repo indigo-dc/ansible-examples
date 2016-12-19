@@ -1,0 +1,4 @@
+roles/
+.DS_Store
+meta/.galaxy_install_info
+*.retry

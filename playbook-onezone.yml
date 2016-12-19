@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: yes
+
+  roles:
+    # These configurations install and configure onezone
+    - { role: onedata.onezone } # default options are install and configure
+    #- { role: onedata.onezone , onezone_install: true, onezone_configure: true,}
+
+    # These configuration performs requirmets check and then installs and configures onezone
+    #- { role: onezone, requirements_check: true, onezone_install: true, onezone_configure: true} 
+
+    # These configuration just restart onezone services
+    #- { role: onezone, onezone_restart: true }
+
+    # This configuration uninstalls onezone package and deletes all the files Onezone service created
+    # database and certificates included!
+    #- { role: onedata.onezone, onezone_uninstall: true }
+
+
+    
