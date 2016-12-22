@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: yes
-  strategy: free
+  #strategy: free # uncomment if installing many oneproivders at once, makes it much faster
   roles:
     # These configurations install and configure oneprovider
     - { role: onedata.oneprovider } # default options are install and configure

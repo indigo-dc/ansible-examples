@@ -1,2 +1,3 @@
 - src: onedata.onezone
 - src: onedata.oneprovider
+- src: groundnuty.letsencrypt

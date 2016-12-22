@@ -1,0 +1,35 @@
+---
+- hosts: all
+  become: yes
+  #strategy: free # uncomment if installing many onezones at once, makes it much faster
+  roles:
+    # These configuration performs requirmets check and then installs and configures onezone
+    - { role: onedata.onezone, requirements_check: true, onezone_install: true, onezone_configure: true } 
+
+    # These configuration stops onezone, as letsencrypt needs a free port 443
+    - { role: onedata.onezone, onezone_restart: true }
+    
+    # Installation and configuration of letsencrypt
+    - groundnuty.letsencrypt
+
+  tasks:
+    - block:
+      - name: Lins (ln -s) certificates from letsencrypt to Onezone
+        file: 
+          src: "{{ item.src }}"
+          dest: "{{ item.dest }}"
+          state: link
+        with_items:
+          - { src: "/etc/letsencrypt/live/{{ ansible_fqdn }}/cert.pem", dest: "/etc/oz_panel/certs/cert.pem" }
+          - { src: "/etc/letsencrypt/live/{{ ansible_fqdn }}/privkey.pem", dest: "/etc/oz_panel/certs/key.pem" }
+          - { src: "/etc/letsencrypt/live/{{ ansible_fqdn }}/cert.pem", dest: "/etc/oz_worker/certs/web_cert.pem" }
+          - { src: "/etc/letsencrypt/live/{{ ansible_fqdn }}/privkey.pem", dest: "/etc/oz_worker/certs/web_key.pem" }
+      - name: Starting Onezone
+        debug: msg="Starting Onezone"
+        changed_when: True
+        notify: "Onezone Start"
+      - meta: flush_handlers
+      tags: letsencrypt:finish
+    
+
+    

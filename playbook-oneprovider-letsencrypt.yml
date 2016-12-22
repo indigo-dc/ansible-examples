@@ -1,0 +1,34 @@
+---
+- hosts: all
+  become: yes
+  #strategy: free # uncomment if installing many oneproivders at once, makes it much faster
+  roles:
+    # These configuration performs requirmets check and then installs and configures oneprovider
+    #- { role: onedata.oneprovider, requirements_check: true, oneprovider_install: true, oneprovider_configure: true} 
+
+    # These configuration stops oneprovider, as letsencrypt needs a free port 443
+    - { role: onedata.oneprovider, oneprovider_stop: true }
+
+    # Installation and configuration of letsencrypt
+    - groundnuty.letsencrypt
+
+  tasks:
+    - block:
+      - name: Lins (ln -s) certificates from letsencrypt to Oneprovider
+        file: 
+          src: "{{ item.src }}"
+          dest: "{{ item.dest }}"
+          state: link
+        with_items:
+          - { src: "/etc/letsencrypt/live/{{ ansible_fqdn }}/cert.pem", dest: "/etc/op_panel/certs/cert.pem" }
+          - { src: "/etc/letsencrypt/live/{{ ansible_fqdn }}/privkey.pem", dest: "/etc/op_panel/certs/key.pem" }
+          - { src: "/etc/letsencrypt/live/{{ ansible_fqdn }}/cert.pem", dest: "/etc/op_worker/certs/web_cert.pem" }
+          - { src: "/etc/letsencrypt/live/{{ ansible_fqdn }}/privkey.pem", dest: "/etc/op_worker/certs/web_key.pem" }
+      - name: Starting Oneprovider
+        debug: msg="Starting Oneprovider"
+        changed_when: True
+        notify: "Oneprovider Start"
+      - meta: flush_handlers
+      tags: letsencrypt:finish
+
+   
