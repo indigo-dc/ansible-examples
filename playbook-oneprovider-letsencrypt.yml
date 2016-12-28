@@ -4,7 +4,7 @@
   #strategy: free # uncomment if installing many oneproivders at once, makes it much faster
   roles:
     # These configuration performs requirmets check and then installs and configures oneprovider
-    #- { role: onedata.oneprovider, requirements_check: true, oneprovider_install: true, oneprovider_configure: true} 
+    - { role: onedata.oneprovider, oneprovider_requirements_check: true, oneprovider_install: true, oneprovider_configure: true}
 
     # These configuration stops oneprovider, as letsencrypt needs a free port 443
     - { role: onedata.oneprovider, oneprovider_stop: true }

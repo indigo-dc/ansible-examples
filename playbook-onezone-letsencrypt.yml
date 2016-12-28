@@ -4,10 +4,10 @@
   #strategy: free # uncomment if installing many onezones at once, makes it much faster
   roles:
     # These configuration performs requirmets check and then installs and configures onezone
-    - { role: onedata.onezone, requirements_check: true, onezone_install: true, onezone_configure: true } 
+    - { role: onedata.onezone, onezone_requirements_check: true, onezone_install: true, onezone_configure: true }
 
     # These configuration stops onezone, as letsencrypt needs a free port 443
-    - { role: onedata.onezone, onezone_restart: true }
+    - { role: onedata.onezone, onezone_stop: true }
     
     # Installation and configuration of letsencrypt
     - groundnuty.letsencrypt
