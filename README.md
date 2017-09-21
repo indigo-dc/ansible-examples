@@ -1,4 +1,4 @@
-#Example Ansible Playbooks for Onedata Services
+# Example Ansible Playbooks for Onedata Services
 
 
 > Playbooks in this repostory use newly developed roles, that for a moment are
@@ -27,7 +27,7 @@ or, if you would like to have sources (recomended if you want to customize confi
 ~~~
 
 ## Using Playbooks
-In order to use playbooks you need to either have properly setup Ansible inventory, or use `~/.ssh/config` together with private key autentication. Assuming you are able to login to an example zone machine using a command ~ssh my-zone~ (mind no ports or users, just an alias from `~/.ssh/config`), you can install Onezone on an example *my-zone* machine with command:
+In order to use playbooks you need to either have properly setup Ansible inventory, or use `~/.ssh/config` together with private key autentication. Assuming you are able to login to an example zone machine using a command *ssh my-zone* (mind no ports or users, just an alias from `~/.ssh/config`), you can install Onezone on an example *my-zone* machine with command:
 ~~~
 ansible-playbook -i 'my-zone,' playbook-onezne.yml
 ~~~
