@@ -6,10 +6,10 @@
 > for evaluation, development, testing, and report bugs in this repository.
 
 This repository contains example Ansible playbooks showcasing installation of Onedata services:
-- (playbook-onezone.yml)[playbook-onezone.yml] installs and configures Onezone instance
-- (playbook-oneprovider.yml)[playbook-oneprovider.yml] installs and configures Oneprovider instance
-- (playbook-onezone-letsencrypt.yml)[playbook-onezone-letsencrypt.yml] installs, configures Onezone instance and setups proper certificates using letsencrypt
-- (playbook-oneprovider-letsencrypt.yml)[playbook-oneprovider-letsencrypt.yml] installs, configures Oneprovider instance and setups proper certificates using letsencrypt
+- [playbook-onezone.yml](playbook-onezone.yml) installs and configures Onezone instance
+- [playbook-oneprovider.yml](playbook-oneprovider.yml) installs and configures Oneprovider instance
+- [playbook-onezone-letsencrypt.yml](playbook-onezone-letsencrypt.yml) installs, configures Onezone instance and setups proper certificates using letsencrypt
+- [playbook-oneprovider-letsencrypt.yml](playbook-oneprovider-letsencrypt.yml) installs, configures Oneprovider instance and setups proper certificates using letsencrypt
 
 ## Dependencies
 ~~~
